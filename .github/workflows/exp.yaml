@@ -27,10 +27,10 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/example:latest
 
-     - name: Stop old container
+      - name: Stop old container
         run: |
-          docker stop example-app || true
-          docker rm example-app || true
+            docker stop example-app || true
+            docker rm example-app || true
 
       - name: Pull latest image
         run: |
