@@ -27,4 +27,24 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/example:latest
 
-       
+     - name: Stop old container
+        run: |
+          docker stop example-app || true
+          docker rm example-app || true
+
+      - name: Pull latest image
+        run: |
+          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/example:latest
+
+      - name: Run new container
+        run: |
+          docker run -d \
+            --name example-app \
+            -p 8085:80 \
+            --restart unless-stopped \
+            ${{ secrets.DOCKERHUB_USERNAME }}/example:latest  
+
+
+
+
+
