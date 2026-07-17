@@ -27,6 +27,4 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/example:latest
 
-      - name: Build and push
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/example:latest
        
